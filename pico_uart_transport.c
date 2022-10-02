@@ -62,3 +62,16 @@ size_t pico_serial_transport_read(struct uxrCustomTransport * transport, uint8_t
     }
     return len;
 }
+
+void pico_serial_init()
+{
+    rmw_uros_set_custom_transport(
+        true,
+        NULL,
+        pico_serial_transport_open,
+        pico_serial_transport_close,
+        pico_serial_transport_write,
+        pico_serial_transport_read
+        );
+
+}
